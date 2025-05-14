@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { Trans } from "react-i18next/TransWithoutContext";
-import { languages, fallbackLng } from "../i18n/settings";
-import { useTranslation } from "../i18n";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { languages, fallbackLng } from "../../i18n/settings";
+import { useTranslation } from "../../i18n";
+import { Header } from "../../components/Header/Header";
+import { Footer } from "../../components/Footer";
+import { Card, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon, HomeIcon } from "lucide-react";
 
 export default async function Page({
   params,
@@ -19,36 +21,22 @@ export default async function Page({
     <>
       <main>
         <Header heading={t("h1")} />
-
-        <h2>
-          <Trans t={t} i18nKey="welcome">
-            Welcome to Next.js v13 <small>appDir</small> and i18next
-          </Trans>
-        </h2>
-        <div style={{ width: "100%" }}>
-          <p>
-            <Trans t={t} i18nKey="blog.text">
-              Check out the corresponding <a href={t("blog.link")}>blog post</a>{" "}
-              describing this example.
-            </Trans>
-          </p>
-          <a href={t("blog.link")}>
-            <img
-              style={{ width: "50%" }}
-              alt="next 13 blog post"
-              src="https://cdn.prod.website-files.com/67a323e323a50df7f24f0a94/67ab23a11128dcf4b9533ed0_next-app-dir-i18n.jpg"
-            />
-          </a>
-        </div>
-        <hr style={{ marginTop: 20, width: "90%" }} />
-        <div>
-          <Link href={`/${lng}/second-page`}>
-            <button type="button">{t("to-second-page")}</button>
-          </Link>
-          <Link href={`/${lng}/client-page`}>
-            <button type="button">{t("to-client-page")}</button>
-          </Link>
-        </div>
+        <Card className="w-full max-w-md mx-auto mt-8">
+          <CardFooter className="flex justify-center gap-4 flex-wrap">
+            <Link href={`/${lng}/second-page`}>
+              <Button className="flex items-center gap-2">
+                {t("to-second-page")}
+                <ArrowRightIcon className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href={`/${lng}/client-page`}>
+              <Button variant="outline" className="flex items-center gap-2">
+                {t("to-client-page")}
+                <HomeIcon className="h-4 w-4" />
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
       </main>
       <Footer lng={lng} />
     </>

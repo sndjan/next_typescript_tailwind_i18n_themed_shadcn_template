@@ -1,10 +1,9 @@
 import "./globals.css";
 
 import { dir } from "i18next";
-import { languages, fallbackLng } from "../i18n/settings";
-import { useTranslation } from "../i18n";
-import { ThemeProvider } from "./components/theme-provider";
-import { ThemeToggle } from "./components/theme-toggle";
+import { languages, fallbackLng } from "../../i18n/settings";
+import { useTranslation } from "../../i18n";
+import { ThemeProvider } from "../../components/theme/ThemeProvider";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -22,7 +21,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     content:
-      "A playground to explore new Next.js 13/14/15 app directory features such as nested layouts, instant loading states, streaming, and component level data fetching.",
+      "Template for Next.js 15 with i18next, TypeScript, Tailwind CSS, ShadcnUI and NextThemes",
   };
 }
 
@@ -38,10 +37,7 @@ export default async function RootLayout({
     <html lang={lng} dir={dir(lng)}>
       <head />
       <body>
-        <ThemeProvider>
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
